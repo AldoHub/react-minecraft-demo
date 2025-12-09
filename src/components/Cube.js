@@ -19,7 +19,7 @@ export const Cube = ({position, texture}) => {
 
     const removeCube = useStore((state) => {
            //console.log("addCube", state.removeCube);
-           return state.addCube;
+           return state.removeCube;
     })
 
 
@@ -27,11 +27,12 @@ export const Cube = ({position, texture}) => {
         <mesh ref={ref} castShadow receiveShadow onClick={(e) => {
             e.stopPropagation();
             const clickedFace = Math.floor(e.faceIndex / 2);
-            console.log("clickedFace", clickedFace);
+            //console.log("clickedFace", clickedFace);
             const { x, y, z } = ref.current.position
-            
+           
             //handle removal or addition of cubes/blocks
             if (e.altKey) {
+                console.log("removing cube");
                 removeCube(x, y, z)
                 return
             }
@@ -59,7 +60,8 @@ export const Cube = ({position, texture}) => {
                 addCube(x, y, z - 1)
                 return
             }
-        }}> 
+        }}>
+             
            <boxBufferGeometry attach="geometry" />
            <meshStandardMaterial attach="material" map={activeTexture} />
         </mesh>

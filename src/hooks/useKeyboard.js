@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useState } from "react";
 
 const useKeyboard = () => {
-    //keyboard actions
+    //keyboard actions object
     const [actions, setActions] = React.useState({
     moveForward: false,
     moveBackward: false,
@@ -16,7 +16,7 @@ const useKeyboard = () => {
     texture5: false,
   });
 
-  //map the keyboard keys to the actions
+  //map the keyboard keys to the actions object
   function actionByKey(key) {
     const keyActionMap = {
         w: 'moveForward',

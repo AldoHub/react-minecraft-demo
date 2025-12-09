@@ -36,5 +36,3 @@ export const Ground = () => {
     )
     
 }
-
-//TODO --- 1:01:47
