@@ -23,7 +23,7 @@ const useKeyboard = () => {
         a: 'moveLeft',
         s: 'moveBackward',
         d: 'moveRight',
-        space: 'jump',
+        Space: 'jump',
         /*
         Digit1: 'dirt',
         Digit2: 'grass',
@@ -43,19 +43,30 @@ const useKeyboard = () => {
 
   const handleKeyDown = useCallback(
     (event) => {
-        //console.log('keydown-----', event.key);
-        const action = actionByKey(event.key);
-        console.log('setaction', action);
-        if(action) {
+       //console.log('keydown-----', event);
+       
+       let action = null;
+       if(event.key === " ") {
+        action = 'jump';
+       }else{
+        action = actionByKey(event.key);
+       }       
+       // console.log('setaction', action);
+       if(action) {
             setActions((prevState) => {
                 return ({ ...prevState, [action]: true });
             })
-        }
+       }
   }, [])  
   
   const handleKeyUp = useCallback(
    (event) => {
-        const action = actionByKey(event.key);
+       let action = null;
+       if(event.key === " ") {
+        action = 'jump';
+       }else{
+        action = actionByKey(event.key);
+       }
         console.log('unset action', action);
         if(action) {
             setActions((prevState) => {
