@@ -42,3 +42,13 @@ body {
 .absolute {
   position: absolute;
 }
+
+.active{
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+.menu {
+  right: 0;
+  top: 0;
+}

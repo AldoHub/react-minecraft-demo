@@ -6,6 +6,7 @@ import { Player } from './components/Player';
 import { FPV } from './components/FPV';
 import { Cubes } from './components/Cubes';
 import { TextureSelector } from './components/TextureSelector';
+import { Menu } from './components/Menu';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       </Canvas>
       <div className="cursor" style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'cyan'}}>+</div>
     T <TextureSelector/>
+    <Menu />
     </>
   );
 }

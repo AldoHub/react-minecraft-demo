@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../hooks/useStore";
 import useKeyboard from "../hooks/useKeyboard";
+import {dirtImg,grassImg, glassImg,	woodImg,logImg} from "../images/images.js"
+
+//map the images to the names of the textures
+const textures = {
+    dirt: dirtImg,
+    grass: grassImg,
+    glass: glassImg,
+    wood: woodImg,
+    log: logImg,
+}
 
 
 export const TextureSelector = () => {
 
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     //return the texture handlers from the store 
     const [activeTexture, setActiveTexture] = useStore((state) => {
        console.log("texture----", state.texture);
@@ -36,10 +46,10 @@ export const TextureSelector = () => {
 
     useEffect(() => {
         const visibilityTime = setTimeout(() => {
-            setVisible(false);
+           // setVisible(false);
         }, 2000);
 
-        setVisible(true);
+        //setVisible(true);
         return () => clearTimeout(visibilityTime);
     }, [activeTexture]);
 
@@ -54,9 +64,39 @@ export const TextureSelector = () => {
             padding: "10px",
             zIndex: 1000,
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-        }}>Texture {activeTexture} </div>
+        }}>
+        {Object.entries(textures).map(([name, src], index) => (
+            <div
+                key={name}
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "5px",
+                }}
+                className={name === activeTexture ? 'active' : ''}
+              
+            >
+                <img
+                alt={name}
+                    src={src}
+                    style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "5px",
+                    }}
+                />
+                <p style={{
+                        margin: 0
+                    }}>{name}</p>
+                <p style={{
+                        margin: 0
+                    }}>{index + 1}</p>    
+            </div>
+        ))}
+        </div>
     )
 }
